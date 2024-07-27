@@ -9,9 +9,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var (
+	version = "dev"
+)
+
 var rootCmd = &cobra.Command{
-	Use:   "config-init",
-	Short: "Utils to init various configs",
+	Use:     "config-init",
+	Version: version,
+	Short:   "Utils to init various configs",
 	// Run: func(cmd *cobra.Command, args []string) { },
 }
 
