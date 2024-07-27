@@ -64,5 +64,5 @@ func ExecCommand(name string, args ...string) {
 		return
 	}
 
-	fmt.Println(string(stdout))
+	fmt.Print(string(stdout))
 }
