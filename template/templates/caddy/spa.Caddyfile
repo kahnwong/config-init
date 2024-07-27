@@ -1,0 +1,7 @@
+:80 {
+	# https://caddy.community/t/how-to-serve-spa-applications-with-caddy-v2/8761/2
+	try_files {path} /
+	encode gzip
+	root * /app/dist/spa
+	file_server
+}

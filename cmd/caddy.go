@@ -8,31 +8,28 @@ import (
 	"os"
 
 	"github.com/kahnwong/config-init/template"
+
 	"github.com/spf13/cobra"
 )
 
-var dockerOptions = []string{
-	"binary",
-	"fastapi",
-	"go",
-	"nix",
+var caddyOptions = []string{
 	"spa",
 }
 
-var dockerCmd = &cobra.Command{
-	Use:       "docker",
-	Short:     "Init Dockerfile",
-	ValidArgs: dockerOptions,
+var caddyCmd = &cobra.Command{
+	Use:       "caddy",
+	Short:     "Init Caddyfile",
+	ValidArgs: caddyOptions,
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
 			fmt.Println("Please specify a template option")
 			os.Exit(1)
 		}
 
-		template.WriteConfig("docker", args[0], "Dockerfile")
+		template.WriteConfig("caddy", args[0], "Caddyfile")
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(dockerCmd)
+	rootCmd.AddCommand(caddyCmd)
 }
