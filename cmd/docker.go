@@ -16,6 +16,7 @@ var dockerOptions = []string{
 	"fastapi",
 	"go",
 	"nix",
+	"node",
 	"spa",
 	"static-site",
 }
