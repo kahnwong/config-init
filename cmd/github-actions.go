@@ -15,6 +15,7 @@ import (
 var githubActionsOptions = []string{
 	"cloudflare-pages",
 	"docker-build",
+	"goreleaser",
 }
 
 var githubActionsCmd = &cobra.Command{
@@ -36,6 +37,9 @@ var githubActionsCmd = &cobra.Command{
 		case "docker-build":
 			filename = "docker-build.yaml"
 			destFile = "build.yaml"
+		case "goreleaser":
+			filename = "goreleaser.yaml"
+			destFile = "release.yaml"
 		}
 
 		_ = template.CreateDir(filepath.Join(".github", "workflows"))
