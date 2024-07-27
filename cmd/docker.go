@@ -12,6 +12,7 @@ import (
 )
 
 var dockerOptions = []string{
+	"binary",
 	"nix",
 }
 
