@@ -13,6 +13,7 @@ import (
 
 var dockerOptions = []string{
 	"binary",
+	"fastapi",
 	"go",
 	"nix",
 }
