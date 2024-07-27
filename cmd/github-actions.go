@@ -14,6 +14,7 @@ import (
 
 var githubActionsOptions = []string{
 	"cloudflare-pages",
+	"docker-build",
 }
 
 var githubActionsCmd = &cobra.Command{
@@ -32,6 +33,9 @@ var githubActionsCmd = &cobra.Command{
 		case "cloudflare-pages":
 			filename = "cloudflare-pages.yaml"
 			destFile = "deploy.yaml"
+		case "docker-build":
+			filename = "docker-build.yaml"
+			destFile = "build.yaml"
 		}
 
 		_ = template.CreateDir(filepath.Join(".github", "workflows"))

@@ -1,5 +1,5 @@
 ---
-name: Deploy
+name: Publish to Cloudflare Pages
 
 on:
   push:
