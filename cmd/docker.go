@@ -31,7 +31,8 @@ var dockerCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		template.WriteConfig("docker", args[0], "Dockerfile")
+		filename := fmt.Sprintf("%s.%s", args[0], "Dockerfile")
+		template.WriteConfig("docker", filename, "Dockerfile")
 	},
 }
 

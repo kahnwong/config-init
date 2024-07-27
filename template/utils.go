@@ -32,10 +32,19 @@ func writeFile(filePath string, data string, permission os.FileMode) {
 	}
 }
 
-func WriteConfig(template string, option string, destFile string) {
-	// main
-	filename := fmt.Sprintf("%s.%s", option, destFile)
+func CreateDir(dir string) error {
+	wd, _ := os.Getwd()
+	destPath := filepath.Join(wd, dir)
 
+	err := os.MkdirAll(filepath.Join(destPath), os.ModePerm)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return err
+}
+
+func WriteConfig(template string, filename string, destFile string) {
 	// -- set dest path --
 	wd, _ := os.Getwd()
 	destPath := filepath.Join(wd, destFile)

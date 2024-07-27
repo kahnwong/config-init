@@ -26,7 +26,8 @@ var caddyCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		template.WriteConfig("caddy", args[0], "Caddyfile")
+		filename := fmt.Sprintf("%s.%s", args[0], "Caddyfile")
+		template.WriteConfig("caddy", filename, "Caddyfile")
 	},
 }
 
