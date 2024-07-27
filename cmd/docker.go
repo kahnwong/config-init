@@ -16,20 +16,10 @@ var dockerOptions = []string{
 	"nix",
 }
 
-func DockerGet(cmd *cobra.Command, args []string, toComplete string) ([]string, cobra.ShellCompDirective) {
-	var autocomplete []string
-
-	if len(args) == 0 {
-		autocomplete = dockerOptions
-	}
-
-	return autocomplete, cobra.ShellCompDirectiveNoFileComp
-}
-
 var dockerCmd = &cobra.Command{
-	Use:               "docker",
-	Short:             "Init Dockerfile",
-	ValidArgsFunction: DockerGet,
+	Use:       "docker",
+	Short:     "Init Dockerfile",
+	ValidArgs: dockerOptions,
 	Run: func(cmd *cobra.Command, args []string) {
 		// validate args
 		if len(args) == 0 {
