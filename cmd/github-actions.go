@@ -20,7 +20,7 @@ var githubActionsOptions = []string{
 
 var githubActionsCmd = &cobra.Command{
 	Use:       "github-actions",
-	Short:     "Init Github Actions config",
+	Short:     "Init Github Actions configs",
 	ValidArgs: githubActionsOptions,
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {

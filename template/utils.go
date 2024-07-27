@@ -45,11 +45,11 @@ func CreateDir(dir string) error {
 }
 
 func WriteConfig(template string, filename string, destFile string) {
-	// -- set dest path --
+	// set dest path
 	wd, _ := os.Getwd()
 	destPath := filepath.Join(wd, destFile)
 
-	// -- write template --
+	// write template
 	content, _ := templatesFS.ReadFile(fmt.Sprintf("templates/%s/%s", template, filename))
 	writeFile(destPath, string(content), 0664)
 }
