@@ -17,6 +17,7 @@ var dockerOptions = []string{
 	"go",
 	"nix",
 	"spa",
+	"static-site",
 }
 
 var dockerCmd = &cobra.Command{
