@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"os/exec"
 	"path/filepath"
 )
 
@@ -52,4 +53,16 @@ func WriteConfig(template string, filename string, destFile string) {
 	// write template
 	content, _ := templatesFS.ReadFile(fmt.Sprintf("templates/%s/%s", template, filename))
 	writeFile(destPath, string(content), 0664)
+}
+
+func ExecCommand(name string, args ...string) {
+	cmd := exec.Command(name, args...)
+	stdout, err := cmd.Output()
+
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+
+	fmt.Println(string(stdout))
 }
