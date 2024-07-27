@@ -4,14 +4,10 @@ Copyright © 2024 Karn Wong <karn@karnwong.me>
 package cmd
 
 import (
-	"embed"
 	"os"
 
 	"github.com/spf13/cobra"
 )
-
-//go:embed templates/*
-var templatesFS embed.FS
 
 var rootCmd = &cobra.Command{
 	Use:   "config-init",

@@ -6,9 +6,8 @@ package cmd
 import (
 	"fmt"
 	"os"
-	"path/filepath"
 
-	"github.com/kahnwong/config-init/utils"
+	"github.com/kahnwong/config-init/template"
 	"github.com/spf13/cobra"
 )
 
@@ -27,18 +26,7 @@ var dockerCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		// main
-		option := args[0]
-		filename := fmt.Sprintf("%s.Dockerfile", option)
-		destFile := "Dockerfile"
-
-		// -- set dest path --
-		wd, _ := os.Getwd()
-		destPath := filepath.Join(wd, destFile)
-
-		// -- write template --
-		template, _ := templatesFS.ReadFile(fmt.Sprintf("templates/docker/%s", filename))
-		utils.WriteFile(destPath, string(template), 0664)
+		template.WriteConfig("docker", args[0], "Dockerfile")
 	},
 }
 
