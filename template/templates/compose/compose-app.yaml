@@ -3,6 +3,10 @@ services:
   app:
     build:
       context: .
+      dockerfile: Dockerfile
+      args:
+        REDIRECT_URL: ${REDIRECT_URL}
+        API_BASE_URL: ${API_BASE_URL}
     image: foo
     environment:
       FOO: BAR
@@ -13,3 +17,13 @@ services:
     restart: always
     volumes:
       - ./data/app:/data
+  # --------------- sidecar --------------- #
+  init:
+    build:
+      context: .
+    environment:
+      RUN_MODE: init
+    env_file:
+      - .env
+    depends_on:
+      - postgres
