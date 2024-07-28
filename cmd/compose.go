@@ -13,6 +13,7 @@ import (
 
 var composeOptions = []string{
 	"app",
+	"clickhouse",
 	"postgres",
 }
 
@@ -33,6 +34,8 @@ var composeCmd = &cobra.Command{
 		switch option {
 		case "app":
 			destFile = "compose.yaml"
+		case "clickhouse":
+			destFile = "compose-clickhouse.yaml"
 		case "postgres":
 			destFile = "compose-db.yaml"
 		}

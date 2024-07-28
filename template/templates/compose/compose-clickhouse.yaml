@@ -1,0 +1,14 @@
+---
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server:24.6.2.17-alpine
+    ports:
+      - ${CLICKHOUSE_HTTP_PORT}:${CLICKHOUSE_HTTP_PORT}
+      - ${CLICKHOUSE_TCP_PORT}:${CLICKHOUSE_TCP_PORT}
+    volumes:
+      - ./data/clickhouse:/var/lib/clickhouse
+    environment:
+      - CLICKHOUSE_DB=${CLICKHOUSE_DB}
+      - CLICKHOUSE_USER=${CLICKHOUSE_USER}
+      - CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1
+      - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
