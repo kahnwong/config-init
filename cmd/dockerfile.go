@@ -11,7 +11,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var dockerOptions = []string{
+var dockerfileOptions = []string{
 	"binary",
 	"fastapi",
 	"go",
@@ -21,10 +21,10 @@ var dockerOptions = []string{
 	"static-site",
 }
 
-var dockerCmd = &cobra.Command{
-	Use:       "docker",
+var dockerfileCmd = &cobra.Command{
+	Use:       "dockerfile",
 	Short:     "Init Dockerfile",
-	ValidArgs: dockerOptions,
+	ValidArgs: dockerfileOptions,
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
 			fmt.Println("Please specify a template option")
@@ -32,10 +32,10 @@ var dockerCmd = &cobra.Command{
 		}
 
 		filename := fmt.Sprintf("%s.%s", args[0], "Dockerfile")
-		template.WriteConfig("docker", filename, "Dockerfile")
+		template.WriteConfig("dockerfile", filename, "Dockerfile")
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(dockerCmd)
+	rootCmd.AddCommand(dockerfileCmd)
 }
