@@ -1,0 +1,15 @@
+---
+services:
+  app:
+    build:
+      context: .
+    image: foo
+    environment:
+      FOO: BAR
+    env_file:
+      - .env
+    ports:
+      - 8080:8080
+    restart: always
+    volumes:
+      - ./data/app:/data
