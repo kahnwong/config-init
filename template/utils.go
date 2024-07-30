@@ -15,13 +15,13 @@ import (
 //go:embed templates/*
 var templatesFS embed.FS
 
-func writeFile(filePath string, data string, permission os.FileMode) {
+func writeFile(filePath string, data []byte, permission os.FileMode) {
 	file, err := os.Create(filePath)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	_, err = file.WriteString(data)
+	_, err = file.Write(data)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -52,7 +52,7 @@ func WriteConfig(template string, filename string, destFile string) {
 
 	// write template
 	content, _ := templatesFS.ReadFile(fmt.Sprintf("templates/%s/%s", template, filename))
-	writeFile(destPath, string(content), 0664)
+	writeFile(destPath, content, 0664)
 }
 
 func ExecCommand(name string, args ...string) {
