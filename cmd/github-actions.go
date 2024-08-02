@@ -15,6 +15,7 @@ import (
 var githubActionsOptions = []string{
 	"cloudflare-pages",
 	"docker-build",
+	"github-pages",
 	"goreleaser",
 }
 
@@ -37,6 +38,9 @@ var githubActionsCmd = &cobra.Command{
 		case "docker-build":
 			filename = "docker-build.yaml"
 			destFile = "build.yaml"
+		case "github-pages":
+			filename = "github-pages.yaml"
+			destFile = "deploy.yaml"
 		case "goreleaser":
 			filename = "goreleaser.yaml"
 			destFile = "release.yaml"
