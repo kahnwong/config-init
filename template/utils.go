@@ -12,7 +12,7 @@ import (
 	"path/filepath"
 )
 
-//go:embed templates/*
+//go:embed assets/*
 var templatesFS embed.FS
 
 func writeFile(filePath string, data []byte, permission os.FileMode) {
@@ -51,7 +51,7 @@ func WriteConfig(template string, filename string, destFile string) {
 	destPath := filepath.Join(wd, destFile)
 
 	// write template
-	content, _ := templatesFS.ReadFile(fmt.Sprintf("templates/%s/%s", template, filename))
+	content, _ := templatesFS.ReadFile(fmt.Sprintf("assets/%s/%s", template, filename))
 	writeFile(destPath, content, 0664)
 }
 
