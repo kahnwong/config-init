@@ -35,7 +35,7 @@ var githubCmd = &cobra.Command{
 			destFile = "dependabot.yaml"
 		}
 
-		_ = template.CreateDir(".github")
+		template.CreateDir(".github")
 		template.WriteConfig("github", filename, filepath.Join(".github", destFile))
 	},
 }

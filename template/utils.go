@@ -29,20 +29,17 @@ func writeFile(filePath string, data []byte, permission os.FileMode) {
 	err = file.Chmod(permission)
 	if err != nil {
 		fmt.Println("Error setting file permissions:", err)
-		return
 	}
 }
 
-func CreateDir(dir string) error {
+func CreateDir(dir string) {
 	wd, _ := os.Getwd()
 	destPath := filepath.Join(wd, dir)
 
 	err := os.MkdirAll(filepath.Join(destPath), os.ModePerm)
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 	}
-
-	return err
 }
 
 func WriteConfig(template string, filename string, destFile string) {
@@ -51,7 +48,10 @@ func WriteConfig(template string, filename string, destFile string) {
 	destPath := filepath.Join(wd, destFile)
 
 	// write template
-	content, _ := templatesFS.ReadFile(fmt.Sprintf("assets/%s/%s", template, filename))
+	content, err := templatesFS.ReadFile(fmt.Sprintf("assets/%s/%s", template, filename))
+	if err != nil {
+		log.Fatal(err)
+	}
 	writeFile(destPath, content, 0664)
 }
 
@@ -60,9 +60,8 @@ func ExecCommand(name string, args ...string) {
 	stdout, err := cmd.Output()
 
 	if err != nil {
-		fmt.Println(err.Error())
-		return
+		log.Fatal(err)
+	} else {
+		fmt.Print(string(stdout))
 	}
-
-	fmt.Print(string(stdout))
 }

@@ -46,7 +46,7 @@ var githubActionsCmd = &cobra.Command{
 			destFile = "release.yaml"
 		}
 
-		_ = template.CreateDir(filepath.Join(".github", "workflows"))
+		template.CreateDir(filepath.Join(".github", "workflows"))
 		template.WriteConfig("github-actions", filename, filepath.Join(".github", "workflows", destFile))
 	},
 }
