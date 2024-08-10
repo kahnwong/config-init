@@ -1,4 +1,4 @@
-FROM golang:1.22-alpine AS build-stage
+FROM golang:1.22-alpine AS build
 
 WORKDIR /app
 
@@ -10,12 +10,10 @@ COPY *.go ./
 RUN CGO_ENABLED=0 go build -ldflags "-w -s" -o /app
 
 # hadolint ignore=DL3007
-FROM alpine:latest AS build-release-stage
+FROM alpine:latest AS deploy
 
 WORKDIR /opt/app
-
-COPY --from=build-stage /app .
+COPY --from=build /app .
 
 RUN chmod +x app
-
 ENTRYPOINT ["./app"]

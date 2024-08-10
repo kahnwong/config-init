@@ -1,4 +1,4 @@
-FROM node:18 AS builder
+FROM node:18 AS build
 
 WORKDIR /opt/build
 
@@ -13,9 +13,9 @@ FROM node:18-alpine AS deploy
 
 WORKDIR /opt/app
 
-COPY --from=builder /opt/build/package.json ./
-COPY --from=builder /opt/build/node_modules ./node_modules
-COPY --from=builder /opt/build/dist ./dist
+COPY --from=build /opt/build/package.json ./
+COPY --from=build /opt/build/node_modules ./node_modules
+COPY --from=build /opt/build/dist ./dist
 
 EXPOSE 8000
 

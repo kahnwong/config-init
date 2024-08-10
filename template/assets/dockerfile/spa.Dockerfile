@@ -1,4 +1,4 @@
-FROM node:18 AS builder
+FROM node:18 AS build
 
 WORKDIR /opt/build
 
@@ -13,6 +13,6 @@ RUN yarn build
 FROM caddy:2-alpine AS deploy
 
 COPY Caddyfile /etc/caddy/Caddyfile
-COPY --from=builder /opt/build/dist/spa /app/dist/spa
+COPY --from=build /opt/build/dist/spa /app/dist/spa
 
 EXPOSE 80
