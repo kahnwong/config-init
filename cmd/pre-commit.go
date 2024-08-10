@@ -35,6 +35,9 @@ var preCommitCmd = &cobra.Command{
 			case "markdownlint":
 				filename = "markdownlint.yaml"
 				destFile = ".markdownlint.yaml"
+			case "tfdocs":
+				filename = "terraform-docs.yaml"
+				destFile = ".terraform-docs.yaml"
 			}
 
 			template.WriteConfig("pre-commit", filename, destFile)
