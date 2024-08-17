@@ -15,7 +15,7 @@ COPY --from=build /app /
 
 CMD ["/app"]
 
-## use this if your app is CGO_ENABLED=0
+## use this if your app is CGO_ENABLED=1
 #FROM alpine:latest AS deploy
 #
 #WORKDIR /opt/app
