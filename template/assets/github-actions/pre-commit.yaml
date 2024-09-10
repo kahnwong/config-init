@@ -1,0 +1,42 @@
+---
+name: pre-commit
+on:
+  pull_request:
+    paths-ignore:
+      - '.github/**'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install poetry
+        run: |
+          pipx install poetry
+          pipx inject poetry poetry-plugin-export
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: poetry
+          cache-dependency-path: poetry.lock
+      - run: |
+          poetry env use 3.11
+          poetry install
+      - name: Install pre-commit
+        run: pipx install pre-commit
+      - name: Cache pre-commit modules
+        uses: actions/cache@v4
+        with:
+          key: ${{ runner.OS }}-pre-commit-cache-${{ hashFiles('.pre-commit-config.yaml') }}
+          path: ~/.cache/pre-commit
+      - name: Run pre-commit
+        continue-on-error: true
+        run: |
+          pre-commit install
+          pre-commit run --all-files
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5

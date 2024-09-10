@@ -17,6 +17,7 @@ var githubActionsOptions = []string{
 	"docker-build",
 	"github-pages",
 	"goreleaser",
+	"pre-commit",
 }
 
 var githubActionsCmd = &cobra.Command{
@@ -44,6 +45,9 @@ var githubActionsCmd = &cobra.Command{
 		case "goreleaser":
 			filename = "goreleaser.yaml"
 			destFile = "release.yaml"
+		case "pre-commit":
+			filename = "pre-commit.yaml"
+			destFile = "pre-commit.yaml"
 		}
 
 		template.CreateDir(filepath.Join(".github", "workflows"))
