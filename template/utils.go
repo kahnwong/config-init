@@ -53,6 +53,7 @@ func WriteConfig(template string, filename string, destFile string) {
 		log.Fatal(err)
 	}
 	writeFile(destPath, content, 0664)
+	fmt.Printf("Written to %s\n", destFile)
 }
 
 func ExecCommand(name string, args ...string) {
