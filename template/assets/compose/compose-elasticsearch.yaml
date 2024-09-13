@@ -1,0 +1,14 @@
+---
+services:
+  elasticsearch:
+    image: elasticsearch:8.5.0
+    container_name: elasticsearch
+    ports:
+      - '9200:9200'
+      - '9300:9300'
+    environment:
+      discovery.type: single-node
+      ELASTIC_USERNAME: ${ELASTIC_USERNAME}
+      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
+    volumes:
+      - ./elastic:/usr/share/elasticsearch/data

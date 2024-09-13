@@ -15,6 +15,7 @@ var composeOptions = []string{
 	"app",
 	"caddy",
 	"clickhouse",
+	"elasticsearch",
 	"mongo",
 	"postgres",
 }
@@ -40,6 +41,8 @@ var composeCmd = &cobra.Command{
 			destFile = "compose-caddy.yaml"
 		case "clickhouse":
 			destFile = "compose-clickhouse.yaml"
+		case "elasticsearch":
+			destFile = "compose-elasticsearch.yaml"
 		case "mongo":
 			destFile = "compose-mongo.yaml"
 		case "postgres":
