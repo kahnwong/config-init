@@ -13,10 +13,10 @@ import (
 
 var dockerfileOptions = []string{
 	"binary",
-	"fastapi",
 	"go",
 	"nix",
 	"node",
+	"python",
 	"spa",
 	"static-site",
 }
