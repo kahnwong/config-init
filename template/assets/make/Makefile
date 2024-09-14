@@ -1,23 +1,23 @@
-# docker
+# ----------- docker ----------- #
 start-db:
 	docker compose -f docker-compose-postgres.yaml up -d
 
-# caddy
+# ----------- caddy ----------- #
 start: build
 	caddy file-server --root dist/spa --listen :4000
 
-# golang
+# -----------golang ----------- #
 build:
 	goreleaser release --skip publish --skip validate --clean -f .goreleaser-linux.yaml
 
 test:
 	go test ./...
 
-# mlflow
+# ----------- mlflow ----------- #
 start:
 	mlflow server --port 8080
 
-# fastapi
+# ----------- fastapi ----------- #
 start:
 	uvicorn python_api_template.main:app --port 8080 --reload
 test:
@@ -27,11 +27,11 @@ test-full:
 codecov:
 	pytest --cov=python_api_template tests/single.py
 
-# streamlit
+# ----------- streamlit ----------- #
 start:
 	streamlit run article_summarizer/frontend.py --server.port 8501
 
-# rust
+# ----------- rust ----------- #
 build:
 	cargo build --release
 run:
