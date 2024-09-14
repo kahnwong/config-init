@@ -139,3 +139,9 @@ repos:
 #        name: prettier
 #        entry: "yarn prettier . --write"
 #        language: system
+  # ----------------------- RUST -----------------------
+  - repo: https://github.com/doublify/pre-commit-rust
+    rev: v1.0
+    hooks:
+      - id: fmt
+      - id: cargo-check
