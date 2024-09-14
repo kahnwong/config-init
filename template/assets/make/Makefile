@@ -30,3 +30,11 @@ codecov:
 # streamlit
 start:
 	streamlit run article_summarizer/frontend.py --server.port 8501
+
+# rust
+build:
+	cargo build --release
+run:
+	./target/release/qa-api-rs
+dev:
+	systemfd --no-pid -s http::3000 -- cargo watch -x run
