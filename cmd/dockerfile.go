@@ -17,6 +17,7 @@ var dockerfileOptions = []string{
 	"nix",
 	"node",
 	"python",
+	"rust",
 	"spa",
 	"static-site",
 }
