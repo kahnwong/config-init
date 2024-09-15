@@ -17,4 +17,5 @@ RUN cargo build --release && \
 FROM alpine:latest AS deploy
 COPY --from=build /qa-api-rs /
 
+EXPOSE 3000
 CMD ["/qa-api-rs"]

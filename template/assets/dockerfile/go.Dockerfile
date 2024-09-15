@@ -13,6 +13,7 @@ RUN CGO_ENABLED=0 go build -ldflags "-w -s" -o /app
 FROM gcr.io/distroless/static-debian11:latest AS deploy
 COPY --from=build /app /
 
+EXPOSE 8080
 CMD ["/app"]
 
 ## use this if your app is CGO_ENABLED=1
