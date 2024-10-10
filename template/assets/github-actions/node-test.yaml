@@ -1,0 +1,25 @@
+---
+name: Node Test
+on:
+  pull_request:
+    paths-ignore:
+      - '.github/**'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  node-test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup node
+        uses: actions/setup-node@v4.0.4
+        with:
+          node-version: "20.17.0"
+          cache: "yarn"
+      - name: Install requirements
+        run: yarn install
+      - name: Build
+        run: yarn build
