@@ -16,6 +16,7 @@ var githubActionsOptions = []string{
 	"cloudflare-pages",
 	"docker-build",
 	"github-pages",
+	"go-test",
 	"goreleaser",
 	"pre-commit",
 }
@@ -42,6 +43,9 @@ var githubActionsCmd = &cobra.Command{
 		case "github-pages":
 			filename = "github-pages.yaml"
 			destFile = "deploy.yaml"
+		case "go-test":
+			filename = "go-test.yaml"
+			destFile = "go-test.yaml"
 		case "goreleaser":
 			filename = "goreleaser.yaml"
 			destFile = "release.yaml"
