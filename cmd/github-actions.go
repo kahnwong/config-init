@@ -20,6 +20,7 @@ var githubActionsOptions = []string{
 	"goreleaser",
 	"node-test",
 	"pre-commit",
+	"rust-test",
 }
 
 var githubActionsCmd = &cobra.Command{
@@ -56,6 +57,9 @@ var githubActionsCmd = &cobra.Command{
 		case "pre-commit":
 			filename = "pre-commit.yaml"
 			destFile = "pre-commit.yaml"
+		case "rust-test":
+			filename = "rust-test.yaml"
+			destFile = "rust-test.yaml"
 		}
 
 		template.CreateDir(filepath.Join(".github", "workflows"))
