@@ -1,14 +1,10 @@
----
 name: Release
-
 on:
   push:
     tags:
       - "*"
-
 permissions:
   contents: write
-
 jobs:
   release-binary:
     runs-on: ubuntu-latest

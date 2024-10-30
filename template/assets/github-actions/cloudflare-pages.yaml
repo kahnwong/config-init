@@ -1,19 +1,14 @@
----
 name: Deploy to Cloudflare Pages
-
 on:
   push:
     branches: [master]
   workflow_dispatch:
-
 concurrency:
   group: environment-${{ github.ref }}
   cancel-in-progress: true
-
 env:
-  PROJECT_NAME: project  # CHANGE ME
-  BUILD_DIR: dist  # CHANGE ME
-
+  PROJECT_NAME: project # CHANGE ME
+  BUILD_DIR: dist # CHANGE ME
 jobs:
   publish:
     runs-on: ubuntu-latest
