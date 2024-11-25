@@ -20,7 +20,7 @@ repos:
       - id: blacken-docs
         additional_dependencies: [black==23.12.1]
   - repo: https://github.com/kahnwong/pre-commit
-    rev: "791fd68"
+    rev: "00af229"
     hooks:
       # -- go -- #
       - id: go-build
@@ -58,6 +58,7 @@ repos:
           - DL3027
       - id: shellcheck
       - id: shfmt
+      - id: trufflehog
       # -- misc -- #
       - id: nix-fmt
       - id: yarn-prettier
