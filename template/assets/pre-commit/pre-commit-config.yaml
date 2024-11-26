@@ -20,7 +20,7 @@ repos:
       - id: blacken-docs
         additional_dependencies: [black==23.12.1]
   - repo: https://github.com/kahnwong/pre-commit
-    rev: "00af229"
+    rev: "b7510cc"
     hooks:
       # -- go -- #
       - id: go-build
