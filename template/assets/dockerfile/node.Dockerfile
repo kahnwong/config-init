@@ -1,4 +1,4 @@
-FROM node:18 AS build
+FROM node:22 AS build
 
 WORKDIR /opt/build
 
@@ -9,7 +9,7 @@ RUN yarn install
 COPY . .
 RUN yarn build
 
-FROM node:18-alpine AS deploy
+FROM node:22-alpine AS deploy
 
 WORKDIR /opt/app
 
