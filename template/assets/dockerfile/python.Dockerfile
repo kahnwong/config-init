@@ -1,18 +1,17 @@
-FROM python:3.12-slim
+FROM ghcr.io/astral-sh/uv:python3.13-bookworm-slim
 
-WORKDIR /opt/app
-
-# app deps
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# install deps
+# hadolint ignore=DL3045
+COPY pyproject.toml uv.lock ./
+RUN uv export --no-hashes --no-dev --no-emit-project --output-file=requirements.txt && \
+  pip install --no-cache-dir -r requirements.txt
 
 # app
+# app
+WORKDIR /opt/app
 COPY . .
 
-## fastapi
+# entrypoint
+COPY entrypoint.sh .
 EXPOSE 8080
-CMD uvicorn project.main:app --port 8080 --host 0.0.0.0
-
-### streamlit
-#EXPOSE 8501
-#CMD streamlit run module/frontend.py --server.port 8501
+CMD bash entrypoint.sh
