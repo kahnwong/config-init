@@ -16,7 +16,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4.0.4
         with:
-          node-version: "20.17.0"
+          node-version: "22"
           cache: "yarn"
       - name: Install requirements
         run: yarn install
