@@ -45,6 +45,11 @@ repos:
     hooks:
       - id: markdownlint-cli2
         args: [--ignores, node_modules, src, --fix]
+  - repo: https://github.com/asottile/blacken-docs
+    rev: 1.18.0
+    hooks:
+      - id: blacken-docs
+        additional_dependencies: [black==23.12.1]
   # ----------------------- GOLANG -----------------------
   - repo: https://github.com/dnephin/pre-commit-golang
     rev: v0.5.1
