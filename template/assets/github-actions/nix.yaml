@@ -1,0 +1,37 @@
+name: Deploy to Cloudflare Pages
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+concurrency:
+  group: environment-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  PROJECT_NAME: project # CHANGE ME
+  BUILD_DIR: dist # CHANGE ME
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      deployments: write
+    name: Deploy to Cloudflare Pages
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      # ---------- build ----------
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: DeterminateSystems/flake-checker-action@main
+      - name: Install zola
+        run: nix profile install nixpkgs#zola
+      - name: Build zola
+        run: zola build
+      # ---------- publish ----------
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy ${{ env.BUILD_DIR }} --project-name=${{ env.PROJECT_NAME }}

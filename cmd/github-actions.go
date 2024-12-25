@@ -18,6 +18,7 @@ var githubActionsOptions = []string{
 	"github-pages",
 	"go-test",
 	"goreleaser",
+	"nix",
 	"node-test",
 	"pre-commit",
 	"rust-test",
@@ -51,6 +52,9 @@ var githubActionsCmd = &cobra.Command{
 		case "goreleaser":
 			filename = "goreleaser.yaml"
 			destFile = "release.yaml"
+		case "nix":
+			filename = "nix.yaml"
+			destFile = "deploy.yaml"
 		case "node-test":
 			filename = "node-test.yaml"
 			destFile = "node-test.yaml"
