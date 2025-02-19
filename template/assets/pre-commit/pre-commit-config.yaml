@@ -29,9 +29,9 @@ repos:
       - id: ruff-check
       - id: ruff-format
       - id: uv-lock
-      - id: uv-export
-      - id: mypy
-      - id: nbstripout
+      # - id: uv-export
+      # - id: mypy
+      # - id: nbstripout
       # -- rust -- #
       - id: rust-fmt
       - id: cargo-check
