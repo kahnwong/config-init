@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
       # ---------- build ----------
       - uses: DeterminateSystems/nix-installer-action@main
-      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: DeterminateSystems/flakehub-cache-action@main
       - uses: DeterminateSystems/flake-checker-action@main
       - name: Install zola
         run: nix profile install nixpkgs#zola
