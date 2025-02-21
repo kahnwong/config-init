@@ -1,4 +1,4 @@
-FROM rust:1.84-alpine3.20 AS build
+FROM rust:1.85-alpine3.20 AS build
 
 WORKDIR /app
 
