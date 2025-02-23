@@ -7,7 +7,6 @@ RUN uv export --no-hashes --no-dev --no-emit-project --output-file=requirements.
   pip install --no-cache-dir -r requirements.txt
 
 # app
-# app
 WORKDIR /opt/app
 COPY . .
 
