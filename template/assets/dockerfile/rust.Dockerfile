@@ -1,6 +1,6 @@
 FROM rust:1.84-alpine3.20 AS build
 
-WORKDIR /app
+WORKDIR /build
 
 COPY Cargo.lock Cargo.toml ./
 RUN mkdir src && echo "fn main() {}" > src/main.rs
