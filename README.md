@@ -15,6 +15,7 @@ Available Commands:
   caddy          Init Caddyfile
   completion     Generate the autocompletion script for the specified shell
   compose        Init compose.yaml
+  direnv         Init direnv
   dockerfile     Init Dockerfile
   github         Init GitHub-related configs
   github-actions Init Github Actions configs
