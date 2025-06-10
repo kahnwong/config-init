@@ -61,6 +61,9 @@ var githubActionsCmd = &cobra.Command{
 		case "pre-commit":
 			filename = "pre-commit.yaml"
 			destFile = "pre-commit.yaml"
+		case "python-test":
+			filename = "python-test.yaml"
+			destFile = "python-test.yaml"
 		case "rust-test":
 			filename = "rust-test.yaml"
 			destFile = "rust-test.yaml"
