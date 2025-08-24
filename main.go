@@ -1,5 +1,5 @@
 /*
-Copyright © 2024 Karn Wong <karn@karnwong.me>
+Copyright © 2025 Karn Wong <karn@karnwong.me>
 */
 package main
 
