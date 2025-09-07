@@ -8,7 +8,10 @@ start: build
 
 # -----------golang ----------- #
 build:
-	goreleaser release --skip publish --skip validate --clean -f .goreleaser-linux.yaml
+	goreleaser build --skip validate --snapshot --clean
+
+release:
+	bash -c "GITHUB_TOKEN=$(gh auth token) goreleaser release --skip validate --clean"
 
 test:
 	go test ./...
