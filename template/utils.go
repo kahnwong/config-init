@@ -15,7 +15,7 @@ import (
 //go:embed assets/*
 var templatesFS embed.FS
 
-func writeFile(filePath string, data []byte, permission os.FileMode) {
+func WriteFile(filePath string, data []byte, permission os.FileMode) {
 	file, err := os.Create(filePath)
 	if err != nil {
 		log.Fatal(err)
@@ -52,7 +52,7 @@ func WriteConfig(template string, filename string, destFile string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	writeFile(destPath, content, 0664)
+	WriteFile(destPath, content, 0664)
 	fmt.Printf("Written to %s\n", destFile)
 }
 
