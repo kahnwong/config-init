@@ -1,0 +1,7 @@
+[core]
+    remote = garage
+    autostage = true
+['remote "garage"']
+    url = s3://dvc/project
+    endpointurl = https://garage.example.tld
+    profile = garage-dvc-rw
