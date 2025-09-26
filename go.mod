@@ -1,6 +1,6 @@
 module github.com/kahnwong/config-init
 
-go 1.23.5
+go 1.25.1
 
 toolchain go1.24.5
 
