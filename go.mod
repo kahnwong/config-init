@@ -2,7 +2,7 @@ module github.com/kahnwong/config-init
 
 go 1.25.1
 
-toolchain go1.24.5
+toolchain go1.25.3
 
 require (
 	github.com/kahnwong/cli-base v0.0.0-20250814120046-dde1e03ae9dd
