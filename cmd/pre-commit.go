@@ -10,6 +10,7 @@ import (
 
 var preCommitOptions = []string{
 	"markdownlint",
+	"rumdl",
 	"tfdocs",
 }
 
@@ -35,6 +36,9 @@ var preCommitCmd = &cobra.Command{
 			case "markdownlint":
 				filename = "markdownlint.yaml"
 				destFile = ".markdownlint.yaml"
+			case "rumdl":
+				filename = "rumdl.toml"
+				destFile = ".rumdl.toml"
 			case "tfdocs":
 				filename = "terraform-docs.yaml"
 				destFile = ".terraform-docs.yaml"
