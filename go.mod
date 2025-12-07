@@ -1,6 +1,6 @@
 module github.com/kahnwong/config-init
 
-go 1.25.1
+go 1.25.4
 
 require (
 	github.com/kahnwong/cli-base v0.0.0-20250904051131-db1ec9f8394b
