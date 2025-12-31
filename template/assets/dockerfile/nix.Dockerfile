@@ -1,17 +1,21 @@
 # hadolint ignore=DL3007
-FROM nixos/nix:latest
+FROM nixos/nix:latest AS build
 
-RUN nix-channel --update
-RUN nix-env -iA nixpkgs.bash && \
-  nix-env -iA nixpkgs.gnutar && \
-  nix-env -iA nixpkgs.gzip && \
-  nix-env -iA nixpkgs.curl && \
-  nix-env -iA nixpkgs.postgresql_16 && \
-  nix-env -iA nixpkgs.awscli2
+# hadolint ignore=DL3059
+RUN nix-channel --update && \
+    nix-env -iA nixpkgs.bash nixpkgs.gnutar nixpkgs.gzip nixpkgs.curl nixpkgs.postgresql_18 nixpkgs.awscli2
 
-# set entrypoint
-WORKDIR /opt/backup
-COPY entrypoint.sh .
-RUN chmod +x entrypoint.sh
+# Use nix-store to identify exactly what is needed and copy it to a specific path
+# hadolint ignore=SC2046
+RUN mkdir -p /tmp/nix-store-closure && \
+    cp -R $(nix-store -qR $(which bash gnutar gzip curl psql aws)) /tmp/nix-store-closure
 
-ENTRYPOINT ["bash", "entrypoint.sh"]
+# hadolint ignore=DL3007
+FROM alpine:latest
+COPY --from=build /tmp/nix-store-closure /nix/store
+COPY --from=build /root/.nix-profile/bin /usr/local/bin
+
+COPY entrypoint.sh /
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
