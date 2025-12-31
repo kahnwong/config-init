@@ -18,21 +18,21 @@ test:
 
 # ----------- mlflow ----------- #
 start:
-	mlflow server --port 8080
+	uv run mlflow server --port 8080
 
 # ----------- fastapi ----------- #
 start:
-	uvicorn python_api_template.main:app --port 8080 --reload
+	uv run uvicorn python_api_template.main:app --port 8080 --reload
 test:
-	pytest tests/single.py
+	uv run pytest tests/single.py
 test-full:
-	pytest -n 8 tests/full.py
+	uv run pytest -n 8 tests/full.py
 codecov:
-	pytest --cov=python_api_template tests/single.py
+	uv run pytest --cov=python_api_template tests/single.py
 
 # ----------- streamlit ----------- #
 start:
-	streamlit run article_summarizer/frontend.py --server.port 8501
+	uv run streamlit run article_summarizer/frontend.py --server.port 8501
 
 # ----------- rust ----------- #
 build:
