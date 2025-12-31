@@ -23,12 +23,12 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v6
         with:
-          node-version: "22"
-          cache: "npm"
+          node-version: "24"
+          cache: "yarn"
       - name: Install requirements
-        run: npm install
+        run: yarn install
       - name: Build
-        run: npm run build
+        run: yarn build
       # ---------- publish ----------
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
