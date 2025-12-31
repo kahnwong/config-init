@@ -1,21 +1,19 @@
-FROM rust:1.92-alpine3.20 AS build
-
+FROM rust:1.92-trixie AS build
 WORKDIR /build
 
 COPY Cargo.lock Cargo.toml ./
 RUN mkdir src && echo "fn main() {}" > src/main.rs
 RUN cargo fetch
 
-RUN apk update && apk add musl-dev libressl-dev --no-cache
-
 COPY src src
 RUN cargo build --release && \
-    strip target/release/qa-api-rs && \
-    cp ./target/release/qa-api-rs /qa-api-rs
+    strip target/release/app && \
+    cp ./target/release/app /app
 
 # hadolint ignore=DL3007
-FROM alpine:latest AS deploy
-COPY --from=build /qa-api-rs /
+FROM gcr.io/distroless/cc:nonroot AS deploy
+
+COPY --from=build /app /
 
 EXPOSE 3000
-CMD ["/qa-api-rs"]
+ENTRYPOINT ["/app"]
