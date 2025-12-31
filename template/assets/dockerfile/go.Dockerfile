@@ -1,26 +1,23 @@
 FROM golang:1.25-alpine AS build
+## for CGO
+#FROM golang:1.25-trixie AS build
 
 WORKDIR /build
 
 COPY go.mod go.sum ./
 RUN go mod download
 
-COPY *.go ./
+COPY . ./
 
-RUN CGO_ENABLED=0 go build -ldflags "-w -s" -o /app
+RUN CGO_ENABLED=0 go build -ldflags "-w -s" -o app
+## for CGO
+#RUN CGO_ENABLED=1 go build -ldflags "-w -s" -o /app
 
-# hadolint ignore=DL3007
-FROM gcr.io/distroless/static-debian11:latest AS deploy
-COPY --from=build /app /
+FROM gcr.io/distroless/static-debian13:nonroot AS deploy
+## for CGO
+#FROM gcr.io/distroless/base-debian13:nonroot AS deploy
 
-EXPOSE 8080
-CMD ["/app"]
+COPY --from=build /build/app /
 
-## use this if your app is CGO_ENABLED=1
-#FROM alpine:latest AS deploy
-#
-#WORKDIR /opt/app
-#COPY --from=build /app .
-#
-#RUN chmod +x app
-#ENTRYPOINT ["/app"]
+EXPOSE 3000
+ENTRYPOINT ["/app"]
