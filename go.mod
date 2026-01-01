@@ -3,7 +3,7 @@ module github.com/kahnwong/config-init
 go 1.25.4
 
 require (
-	github.com/kahnwong/cli-base v0.0.0-20250904051131-db1ec9f8394b
+	github.com/kahnwong/cli-base v0.0.0-20260101083643-0c950e574c26
 	github.com/spf13/cobra v1.10.2
 )
 
