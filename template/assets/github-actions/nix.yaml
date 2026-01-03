@@ -21,9 +21,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       # ---------- build ----------
-      - uses: DeterminateSystems/nix-installer-action@main
-      - uses: DeterminateSystems/flakehub-cache-action@main
-      - uses: DeterminateSystems/flake-checker-action@main
+      - uses: nixbuild/nix-quick-install-action@v30
+        with:
+          nix_conf: |
+            keep-env-derivations = true
+            keep-outputs = true
+      - name: Restore and save Nix store
+        uses: nix-community/cache-nix-action@v6
+        id: zola-cache
+        with:
+          primary-key: nix-${{ runner.os }}-zola-v0.21.0
+          restore-prefixes-first-match: nix-${{ runner.os }}-
       - name: Install zola
         run: nix profile install nixpkgs#zola
       - name: Build zola
