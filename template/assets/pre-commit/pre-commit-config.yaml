@@ -15,7 +15,7 @@ repos:
       - id: fix-byte-order-marker
       - id: mixed-line-ending
   - repo: https://github.com/kahnwong/pre-commit
-    rev: "b144118"
+    rev: "39ff74a"
     hooks:
       # -- go -- #
       - id: go-build
@@ -28,9 +28,9 @@ repos:
       # -- python -- #
       - id: ruff-check
       - id: ruff-format
+      - id: ty
       - id: uv-lock
       # - id: uv-export
-      # - id: mypy
       # - id: nbstripout
       # -- rust -- #
       - id: rust-fmt
@@ -39,8 +39,8 @@ repos:
       # -- terraform -- #
       - id: terraform-fmt
       - id: terraform-validate
-        #      - id: tofu-fmt
-        #      - id: tofu-validate
+      # - id: tofu-fmt
+      # - id: tofu-validate
       - id: terraform-docs
       - id: terraform-trivy
       # -- ops -- #
@@ -56,7 +56,6 @@ repos:
       - id: kingfisher
       - id: shellcheck
       - id: shfmt
-      # - id: trufflehog
       # -- misc -- #
       - id: nix-fmt
       - id: graphql
