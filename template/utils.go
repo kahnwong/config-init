@@ -1,5 +1,5 @@
 /*
-Copyright © 2025 Karn Wong <karn@karnwong.me>
+Copyright © 2026 Karn Wong <karn@karnwong.me>
 */
 package template
 
