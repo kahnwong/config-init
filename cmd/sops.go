@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"fmt"
 	"os"
 
 	cliBase "github.com/kahnwong/cli-base"
@@ -13,32 +12,24 @@ var sopsAccounts = []string{
 	"personal",
 	"work",
 }
+var sopsFileMapping = map[string]string{
+	"personal": "~/.sops.yaml",
+	"work":     "~/.sops-work.yaml",
+}
+
 var sopsCmd = &cobra.Command{
 	Use:       "sops",
 	Short:     "Init sops",
 	ValidArgs: sopsAccounts,
 	Run: func(cmd *cobra.Command, args []string) {
-		if len(args) == 0 {
-			fmt.Println("Please specify a sops account")
-			os.Exit(1)
-		}
-
-		var contentBytes []byte
-		var err error
+		requireArgs(args, errMsgSopsAccount)
 
 		account := args[0]
-		switch account {
-		case "personal":
-			contentBytes, err = os.ReadFile(cliBase.ExpandHome("~/.sops.yaml"))
-			if err != nil {
-				panic(err)
-			}
+		sourceFile := sopsFileMapping[account]
 
-		case "work":
-			contentBytes, err = os.ReadFile(cliBase.ExpandHome("~/.sops-work.yaml"))
-			if err != nil {
-				panic(err)
-			}
+		contentBytes, err := os.ReadFile(cliBase.ExpandHome(sourceFile))
+		if err != nil {
+			panic(err)
 		}
 
 		template.WriteFile(".sops.yaml", contentBytes, 0664)

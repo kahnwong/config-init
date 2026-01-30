@@ -14,6 +14,12 @@ var preCommitOptions = []string{
 	"tfdocs",
 }
 
+var preCommitHookMapping = map[string][2]string{
+	"markdownlint": {"markdownlint.yaml", ".markdownlint.yaml"},
+	"rumdl":        {"rumdl.toml", ".rumdl.toml"},
+	"tfdocs":       {"terraform-docs.yaml", ".terraform-docs.yaml"},
+}
+
 var preCommitCmd = &cobra.Command{
 	Use:       "pre-commit",
 	Short:     "Init pre-commit",
@@ -29,23 +35,9 @@ var preCommitCmd = &cobra.Command{
 		// hooks configurations
 		if len(args) > 0 {
 			hookConfigOption := args[0]
-			var filename string
-			var destFile string
+			filename, destFile := mapOptionSeparate(hookConfigOption, preCommitHookMapping)
 
-			switch hookConfigOption {
-			case "markdownlint":
-				filename = "markdownlint.yaml"
-				destFile = ".markdownlint.yaml"
-			case "rumdl":
-				filename = "rumdl.toml"
-				destFile = ".rumdl.toml"
-			case "tfdocs":
-				filename = "terraform-docs.yaml"
-				destFile = ".terraform-docs.yaml"
-			}
-
-			template.WriteConfig("pre-commit", filename, destFile)
-			template.ExecCommand("git", "add", destFile)
+			writeConfigAndGitAdd("pre-commit", filename, destFile)
 		}
 	},
 }

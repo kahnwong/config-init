@@ -4,8 +4,6 @@ Copyright © 2025 Karn Wong <karn@karnwong.me>
 package cmd
 
 import (
-	"fmt"
-	"os"
 	"path/filepath"
 
 	"github.com/kahnwong/config-init/template"
@@ -24,50 +22,28 @@ var githubActionsOptions = []string{
 	"rust-test",
 }
 
+var githubActionsMapping = map[string][2]string{
+	"cloudflare-pages": {"cloudflare-pages.yaml", "deploy.yaml"},
+	"docker-build":     {"docker-build.yaml", "build.yaml"},
+	"github-pages":     {"github-pages.yaml", "deploy.yaml"},
+	"go-test":          {"go-test.yaml", "go-test.yaml"},
+	"goreleaser":       {"goreleaser.yaml", "release.yaml"},
+	"nix":              {"nix.yaml", "deploy.yaml"},
+	"node-test":        {"node-test.yaml", "node-test.yaml"},
+	"pre-commit":       {"pre-commit.yaml", "pre-commit.yaml"},
+	"python-test":      {"python-test.yaml", "python-test.yaml"},
+	"rust-test":        {"rust-test.yaml", "rust-test.yaml"},
+}
+
 var githubActionsCmd = &cobra.Command{
 	Use:       "github-actions",
 	Short:     "Init Github Actions configs",
 	ValidArgs: githubActionsOptions,
 	Run: func(cmd *cobra.Command, args []string) {
-		if len(args) == 0 {
-			fmt.Println("Please specify a template option")
-			os.Exit(1)
-		}
+		requireTemplateOption(args)
 
-		filename := args[0]
-		var destFile string
-		switch filename {
-		case "cloudflare-pages":
-			filename = "cloudflare-pages.yaml"
-			destFile = "deploy.yaml"
-		case "docker-build":
-			filename = "docker-build.yaml"
-			destFile = "build.yaml"
-		case "github-pages":
-			filename = "github-pages.yaml"
-			destFile = "deploy.yaml"
-		case "go-test":
-			filename = "go-test.yaml"
-			destFile = "go-test.yaml"
-		case "goreleaser":
-			filename = "goreleaser.yaml"
-			destFile = "release.yaml"
-		case "nix":
-			filename = "nix.yaml"
-			destFile = "deploy.yaml"
-		case "node-test":
-			filename = "node-test.yaml"
-			destFile = "node-test.yaml"
-		case "pre-commit":
-			filename = "pre-commit.yaml"
-			destFile = "pre-commit.yaml"
-		case "python-test":
-			filename = "python-test.yaml"
-			destFile = "python-test.yaml"
-		case "rust-test":
-			filename = "rust-test.yaml"
-			destFile = "rust-test.yaml"
-		}
+		option := args[0]
+		filename, destFile := mapOptionSeparate(option, githubActionsMapping)
 
 		template.CreateDir(filepath.Join(".github", "workflows"))
 		template.WriteConfig("github-actions", filename, filepath.Join(".github", "workflows", destFile))

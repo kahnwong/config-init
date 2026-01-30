@@ -5,7 +5,6 @@ package cmd
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/kahnwong/config-init/template"
 	"github.com/spf13/cobra"
@@ -20,34 +19,25 @@ var composeOptions = []string{
 	"postgres",
 }
 
+var composeDestMapping = map[string]string{
+	"app":           "compose.yaml",
+	"caddy":         "compose-caddy.yaml",
+	"clickhouse":    "compose-clickhouse.yaml",
+	"elasticsearch": "compose-elasticsearch.yaml",
+	"mongo":         "compose-mongo.yaml",
+	"postgres":      "compose-db.yaml",
+}
+
 var composeCmd = &cobra.Command{
 	Use:       "compose",
 	Short:     "Init compose.yaml",
 	ValidArgs: composeOptions,
 	Run: func(cmd *cobra.Command, args []string) {
-		if len(args) == 0 {
-			fmt.Println("Please specify a template option")
-			os.Exit(1)
-		}
+		requireTemplateOption(args)
 
 		option := args[0]
 		filename := fmt.Sprintf("compose-%s.yaml", option)
-
-		var destFile string
-		switch option {
-		case "app":
-			destFile = "compose.yaml"
-		case "caddy":
-			destFile = "compose-caddy.yaml"
-		case "clickhouse":
-			destFile = "compose-clickhouse.yaml"
-		case "elasticsearch":
-			destFile = "compose-elasticsearch.yaml"
-		case "mongo":
-			destFile = "compose-mongo.yaml"
-		case "postgres":
-			destFile = "compose-db.yaml"
-		}
+		destFile := composeDestMapping[option]
 
 		template.WriteConfig("compose", filename, destFile)
 	},

@@ -12,8 +12,7 @@ var dvcCmd = &cobra.Command{
 	Short: "Init dvc",
 	Run: func(cmd *cobra.Command, args []string) {
 		template.ExecCommand("dvc", "init")
-		template.WriteConfig("dvc", "config", filepath.Join(".dvc", "config"))
-		template.ExecCommand("git", "add", filepath.Join(".dvc", "config"))
+		writeConfigAndGitAdd("dvc", "config", filepath.Join(".dvc", "config"))
 	},
 }
 

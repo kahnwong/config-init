@@ -5,7 +5,6 @@ package cmd
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/kahnwong/config-init/template"
 
@@ -21,10 +20,7 @@ var caddyCmd = &cobra.Command{
 	Short:     "Init Caddyfile",
 	ValidArgs: caddyOptions,
 	Run: func(cmd *cobra.Command, args []string) {
-		if len(args) == 0 {
-			fmt.Println("Please specify a template option")
-			os.Exit(1)
-		}
+		requireTemplateOption(args)
 
 		filename := fmt.Sprintf("%s.%s", args[0], "Caddyfile")
 		template.WriteConfig("caddy", filename, "Caddyfile")
