@@ -34,7 +34,7 @@ Use "config-init [command] --help" for more information about a command.
 
 ## Bonus
 
-You can use [git-xargs](https://github.com/gruntwork-io/git-xargs) to mass update repo
+You can use [git-xargs](https://github.com/gruntwork-io/git-xargs) to mass update repos
 
 ```bash
 export GITHUB_TOKEN=
