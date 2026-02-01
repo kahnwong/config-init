@@ -1,0 +1,7 @@
+[default]
+extend-ignore-identifiers-re = [
+    "word-to-ignore",
+]
+
+[files]
+extend-exclude = ["path/to/exclude/*.md"]

@@ -12,12 +12,14 @@ var preCommitOptions = []string{
 	"markdownlint",
 	"rumdl",
 	"tfdocs",
+	"typos",
 }
 
 var preCommitHookMapping = map[string][2]string{
 	"markdownlint": {"markdownlint.yaml", ".markdownlint.yaml"},
 	"rumdl":        {"rumdl.toml", ".rumdl.toml"},
 	"tfdocs":       {"terraform-docs.yaml", ".terraform-docs.yaml"},
+	"typos":        {"typos.toml", "_typos.toml"},
 }
 
 var preCommitCmd = &cobra.Command{

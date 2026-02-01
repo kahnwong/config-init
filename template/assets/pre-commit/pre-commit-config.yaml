@@ -15,7 +15,7 @@ repos:
       - id: fix-byte-order-marker
       - id: mixed-line-ending
   - repo: https://github.com/kahnwong/pre-commit
-    rev: "39ff74a"
+    rev: "7411bcb"
     hooks:
       # -- go -- #
       - id: go-build
@@ -37,14 +37,17 @@ repos:
       - id: cargo-check
       - id: cargo-clippy
       # -- terraform -- #
-      - id: terraform-fmt
-      - id: terraform-validate
-      # - id: tofu-fmt
-      # - id: tofu-validate
+      # - id: terraform-fmt
+      # - id: terraform-validate
+      - id: tofu-fmt
+      - id: tofu-validate
       - id: terraform-docs
       - id: terraform-trivy
       # -- ops -- #
       - id: yamlfmt
+      - id: kingfisher
+      - id: shellcheck
+      - id: shfmt
       - id: hadolint
         args:
           - --ignore
@@ -53,9 +56,6 @@ repos:
           - DL3018
           - --ignore
           - DL3027
-      - id: kingfisher
-      - id: shellcheck
-      - id: shfmt
       # -- misc -- #
       - id: nix-fmt
       - id: graphql
@@ -63,5 +63,6 @@ repos:
       # - id: markdownlint-cli2
       - id: mdsf
       - id: rumdl
+      - id: typos
       - id: sqruff-lint
       - id: sqruff-fix
