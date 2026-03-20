@@ -35,6 +35,7 @@ repos:
 
 
 
+
               --skip-files="**/.terraform/**/*"
       - id: terraform_docs
         args:
