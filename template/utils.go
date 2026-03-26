@@ -62,7 +62,7 @@ func ExecCommand(name string, args ...string) {
 
 	if err != nil {
 		log.Fatal(err)
-	} else {
-		fmt.Print(string(stdout))
 	}
+
+	fmt.Print(string(stdout))
 }
