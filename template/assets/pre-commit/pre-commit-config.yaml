@@ -43,6 +43,7 @@ repos:
       - id: tofu-validate
       - id: terraform-docs
       - id: terraform-trivy
+      - id: checkov
       # -- ops -- #
       - id: yamlfmt
       - id: kingfisher
