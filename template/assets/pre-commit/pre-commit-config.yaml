@@ -15,7 +15,7 @@ repos:
       - id: fix-byte-order-marker
       - id: mixed-line-ending
   - repo: https://github.com/kahnwong/pre-commit
-    rev: "98ee5b1"
+    rev: "e6a613c"
     hooks:
       # -- go -- #
       - id: go-build
@@ -43,6 +43,7 @@ repos:
       - id: tofu-validate
       - id: terraform-docs
       - id: terraform-trivy
+      - id: checkov
       # -- ops -- #
       - id: yamlfmt
       - id: kingfisher
