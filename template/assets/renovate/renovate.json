@@ -6,11 +6,17 @@
   ],
   "packageRules": [
     {
-      "description": "Isolate Python engine upgrades from general dependency groups",
       "matchPackageNames": [
         "python"
       ],
       "groupName": "python-version"
+    },
+    {
+      "matchPackageNames": [
+        "go",
+        "golang"
+      ],
+      "groupName": "go-version"
     }
   ]
 }
