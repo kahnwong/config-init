@@ -18,21 +18,26 @@ var githubActionsOptions = []string{
 	"goreleaser",
 	"nix",
 	"node-test",
+	"osv-scanner",
 	"pre-commit",
 	"rust-test",
 }
 
-var githubActionsMapping = map[string][2]string{
-	"cloudflare-pages": {"cloudflare-pages.yaml", "deploy.yaml"},
-	"docker-build":     {"docker-build.yaml", "build.yaml"},
-	"github-pages":     {"github-pages.yaml", "deploy.yaml"},
-	"go-test":          {"go-test.yaml", "go-test.yaml"},
-	"goreleaser":       {"goreleaser.yaml", "release.yaml"},
-	"nix":              {"nix.yaml", "deploy.yaml"},
-	"node-test":        {"node-test.yaml", "node-test.yaml"},
-	"pre-commit":       {"pre-commit.yaml", "pre-commit.yaml"},
-	"python-test":      {"python-test.yaml", "python-test.yaml"},
-	"rust-test":        {"rust-test.yaml", "rust-test.yaml"},
+var githubActionsMapping = map[string][][2]string{
+	"cloudflare-pages": {{"cloudflare-pages.yaml", "deploy.yaml"}},
+	"docker-build":     {{"docker-build.yaml", "build.yaml"}},
+	"github-pages":     {{"github-pages.yaml", "deploy.yaml"}},
+	"go-test":          {{"go-test.yaml", "go-test.yaml"}},
+	"goreleaser":       {{"goreleaser.yaml", "release.yaml"}},
+	"nix":              {{"nix.yaml", "deploy.yaml"}},
+	"node-test":        {{"node-test.yaml", "node-test.yaml"}},
+	"osv-scanner": {
+		{"osv-scanner-pr.yaml", "osv-scanner-pr.yaml"},
+		{"osv-scanner-scheduled.yaml", "osv-scanner-scheduled.yaml"},
+	},
+	"pre-commit":  {{"pre-commit.yaml", "pre-commit.yaml"}},
+	"python-test": {{"python-test.yaml", "python-test.yaml"}},
+	"rust-test":   {{"rust-test.yaml", "rust-test.yaml"}},
 }
 
 var githubActionsCmd = &cobra.Command{
@@ -43,10 +48,15 @@ var githubActionsCmd = &cobra.Command{
 		requireTemplateOption(args)
 
 		option := args[0]
-		filename, destFile := mapOptionSeparate(option, githubActionsMapping)
+		mappings, ok := githubActionsMapping[option]
+		if !ok {
+			mappings = [][2]string{{option, option}}
+		}
 
 		template.CreateDir(filepath.Join(".github", "workflows"))
-		template.WriteConfig("github-actions", filename, filepath.Join(".github", "workflows", destFile))
+		for _, mapping := range mappings {
+			template.WriteConfig("github-actions", mapping[0], filepath.Join(".github", "workflows", mapping[1]))
+		}
 	},
 }
 
