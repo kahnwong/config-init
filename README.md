@@ -16,13 +16,16 @@ Available Commands:
   completion     Generate the autocompletion script for the specified shell
   compose        Init compose.yaml
   direnv         Init direnv
+  docker         Init Docker
   dockerfile     Init Dockerfile
-  github         Init GitHub-related configs
+  dvc            Init dvc
   github-actions Init Github Actions configs
   goreleaser     Init goreleaser config
   help           Help about any command
   make           Init Makefile
   pre-commit     Init pre-commit
+  renovate       Init renovate ci config
+  sops           Init sops
 
 Flags:
   -h, --help      help for config-init
