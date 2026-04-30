@@ -5,6 +5,7 @@ import (
 
 	cliBase "github.com/kahnwong/cli-base"
 	"github.com/kahnwong/config-init/template"
+	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 )
 
@@ -27,7 +28,11 @@ var sopsCmd = &cobra.Command{
 		account := args[0]
 		sourceFile := sopsFileMapping[account]
 
-		contentBytes, err := os.ReadFile(cliBase.ExpandHome(sourceFile))
+		keyPath, err := cliBase.ExpandHome(sourceFile)
+		if err != nil {
+			log.Fatal().Err(err).Msgf("failed to expand home path for %s", sourceFile)
+		}
+		contentBytes, err := os.ReadFile(keyPath)
 		if err != nil {
 			panic(err)
 		}
