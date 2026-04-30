@@ -6,7 +6,7 @@ package template
 import (
 	"embed"
 	"fmt"
-	"log"
+	"log/slog"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -18,12 +18,14 @@ var templatesFS embed.FS
 func WriteFile(filePath string, data []byte, permission os.FileMode) {
 	file, err := os.Create(filePath)
 	if err != nil {
-		log.Fatal(err)
+		slog.Error("failed to create file", "path", filePath, "err", err)
+		os.Exit(1)
 	}
 
 	_, err = file.Write(data)
 	if err != nil {
-		log.Fatal(err)
+		slog.Error("failed to write file", "path", filePath, "err", err)
+		os.Exit(1)
 	}
 
 	err = file.Chmod(permission)
@@ -38,7 +40,8 @@ func CreateDir(dir string) {
 
 	err := os.MkdirAll(filepath.Join(destPath), os.ModePerm)
 	if err != nil {
-		log.Fatal(err)
+		slog.Error("failed to create directory", "path", destPath, "err", err)
+		os.Exit(1)
 	}
 }
 
@@ -50,7 +53,8 @@ func WriteConfig(template string, filename string, destFile string) {
 	// write template
 	content, err := templatesFS.ReadFile(fmt.Sprintf("assets/%s/%s", template, filename))
 	if err != nil {
-		log.Fatal(err)
+		slog.Error("failed to read template", "template", template, "filename", filename, "err", err)
+		os.Exit(1)
 	}
 	WriteFile(destPath, content, 0664)
 	fmt.Printf("Written to %s\n", destFile)
@@ -61,7 +65,8 @@ func ExecCommand(name string, args ...string) {
 	stdout, err := cmd.Output()
 
 	if err != nil {
-		log.Fatal(err)
+		slog.Error("failed to execute command", "command", name, "args", args, "err", err)
+		os.Exit(1)
 	}
 
 	fmt.Print(string(stdout))

@@ -1,11 +1,11 @@
 package cmd
 
 import (
+	"log/slog"
 	"os"
 
 	cliBase "github.com/kahnwong/cli-base"
 	"github.com/kahnwong/config-init/template"
-	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 )
 
@@ -30,7 +30,8 @@ var sopsCmd = &cobra.Command{
 
 		keyPath, err := cliBase.ExpandHome(sourceFile)
 		if err != nil {
-			log.Fatal().Err(err).Msgf("failed to expand home path for %s", sourceFile)
+			slog.Error("failed to expand home path", "source_file", sourceFile, "err", err)
+			os.Exit(1)
 		}
 		contentBytes, err := os.ReadFile(keyPath)
 		if err != nil {
