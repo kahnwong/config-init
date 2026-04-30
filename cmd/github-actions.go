@@ -12,6 +12,7 @@ import (
 
 var githubActionsOptions = []string{
 	"cloudflare-pages",
+	"docker-bake",
 	"docker-build",
 	"github-pages",
 	"go-test",
@@ -25,6 +26,7 @@ var githubActionsOptions = []string{
 
 var githubActionsMapping = map[string][][2]string{
 	"cloudflare-pages": {{"cloudflare-pages.yaml", "deploy.yaml"}},
+	"docker-bake":      {{"docker-bake.yaml", "build.yaml"}},
 	"docker-build":     {{"docker-build.yaml", "build.yaml"}},
 	"github-pages":     {{"github-pages.yaml", "deploy.yaml"}},
 	"go-test":          {{"go-test.yaml", "go-test.yaml"}},
