@@ -15,7 +15,7 @@ repos:
       - id: fix-byte-order-marker
       - id: mixed-line-ending
   - repo: https://github.com/kahnwong/pre-commit
-    rev: "e6a613c"
+    rev: "320801a"
     hooks:
       # -- go -- #
       - id: go-build
@@ -59,6 +59,8 @@ repos:
           - DL3027
       # -- misc -- #
       - id: nix-fmt
+      - id: statix
+      - id: deadnix
       - id: graphql
       - id: yarn-prettier
       # - id: markdownlint-cli2
