@@ -17,6 +17,13 @@
         "golang"
       ],
       "groupName": "go-version"
+    },
+    {
+      "matchPackageNames": [
+        "rust",
+        "rust-lang/rust"
+      ],
+      "groupName": "rust-version"
     }
   ]
 }
