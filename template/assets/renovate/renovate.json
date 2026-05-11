@@ -4,26 +4,82 @@
     "config:recommended",
     "group:allNonMajor"
   ],
-  "packageRules": [
+  "regexManagers": [
     {
-      "matchPackageNames": [
-        "python"
+      "fileMatch": [
+        "(^|/)rust-toolchain\\.toml$",
+        "(^|/)rust-toolchain$"
       ],
-      "groupName": "python-version"
+      "matchStrings": [
+        "channel\\s*=\\s*\"(?<currentValue>.*)\""
+      ],
+      "depNameTemplate": "rust",
+      "datasourceTemplate": "docker",
+      "packageNameTemplate": "docker.io/library/rust",
+      "versioningTemplate": "docker"
     },
     {
+      "fileMatch": [
+        "(^|/)\\.python-version$"
+      ],
+      "matchStrings": [
+        "^(?<currentValue>.+)$"
+      ],
+      "depNameTemplate": "python",
+      "datasourceTemplate": "docker",
+      "packageNameTemplate": "docker.io/library/python",
+      "versioningTemplate": "docker"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchManagers": [
+        "gomod",
+        "dockerfile"
+      ],
       "matchPackageNames": [
         "go",
-        "golang"
+        "golang",
+        "docker.io/library/golang"
       ],
-      "groupName": "go-version"
+      "groupName": "go version",
+      "separateMinorPatch": true,
+      "rangeStrategy": "bump",
+      "commitMessageTopic": "go",
+      "commitMessageExtra": "to {{{newVersion}}}"
     },
     {
       "matchPackageNames": [
         "rust",
-        "rust-lang/rust"
+        "docker.io/library/rust"
       ],
-      "groupName": "rust-version"
+      "groupName": "rust version",
+      "separateMinorPatch": true,
+      "rangeStrategy": "bump",
+      "commitMessageTopic": "rust",
+      "commitMessageExtra": "to {{{newVersion}}}"
+    },
+    {
+      "matchPackageNames": [
+        "python",
+        "docker.io/library/python"
+      ],
+      "groupName": "python version",
+      "separateMinorPatch": true,
+      "rangeStrategy": "bump",
+      "commitMessageTopic": "python",
+      "commitMessageExtra": "to {{{newVersion}}}"
+    },
+    {
+      "description": "Force Python minor versioning for pyproject.toml",
+      "matchPackageNames": [
+        "python",
+        "docker.io/library/python"
+      ],
+      "matchFiles": [
+        "pyproject.toml"
+      ],
+      "extractVersion": "^(?<version>\\d+\\.\\d+)"
     }
   ]
 }

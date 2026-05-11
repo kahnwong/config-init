@@ -1,4 +1,23 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", "group:allNonMajor"]
+  "extends": [
+    "config:recommended",
+    "group:allNonMajor"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": [
+        "gomod",
+        "dockerfile"
+      ],
+      "matchPackageNames": [
+        "go",
+        "golang",
+        "docker.io/library/golang"
+      ],
+      "groupName": "go version",
+      "separateMinorPatch": true,
+      "rangeStrategy": "bump"
+    }
+  ]
 }
