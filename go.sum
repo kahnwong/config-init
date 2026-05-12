@@ -4,6 +4,8 @@ github.com/inconshreveable/mousetrap v1.1.0 h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2
 github.com/inconshreveable/mousetrap v1.1.0/go.mod h1:vpF70FUmC8bwa3OWnCshd2FqLfsEA9PFc4w1p2J65bw=
 github.com/kahnwong/cli-base v0.0.0-20260430124253-310ea2400611 h1:K7kcMHPHA6NjsgNVKk2B5dInmHzICpUFPboOS9QbKMo=
 github.com/kahnwong/cli-base v0.0.0-20260430124253-310ea2400611/go.mod h1:IQFXAz3QjyAPnaSPy2it6cLwZPaxSS0K9l/vfE22vQM=
+github.com/kahnwong/cli-base v0.0.0-20260512102925-06fe226bcb0d h1:9eE1Js34TBKd7diyiMUUELc0ZRWc9DbxWJr/bhg4zko=
+github.com/kahnwong/cli-base v0.0.0-20260512102925-06fe226bcb0d/go.mod h1:k2QIbUDh4mZWVoczH5CVfczQLU7nurgGeldpYtak0Ps=
 github.com/kr/pretty v0.3.1 h1:flRD4NNwYAUpkphVc1HcthR4KEIFJ65n8Mw5qdRn3LE=
 github.com/kr/pretty v0.3.1/go.mod h1:hoEshYVHaxMs3cyo3Yncou5ZscifuDolrwPKZanG3xk=
 github.com/kr/text v0.2.0 h1:5Nx0Ya0ZqY2ygV366QzturHI13Jq95ApcVaJBhpS+AY=
