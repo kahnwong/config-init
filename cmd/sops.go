@@ -1,10 +1,11 @@
 package cmd
 
 import (
+	"fmt"
 	"log/slog"
 	"os"
 
-	cliBase "github.com/kahnwong/cli-base"
+	"github.com/kahnwong/cli-base"
 	"github.com/kahnwong/config-init/template"
 	"github.com/spf13/cobra"
 )
@@ -28,7 +29,7 @@ var sopsCmd = &cobra.Command{
 		account := args[0]
 		sourceFile := sopsFileMapping[account]
 
-		keyPath, err := cliBase.ExpandHome(sourceFile)
+		keyPath, err := cli_base.ExpandHome(sourceFile)
 		if err != nil {
 			slog.Error("failed to expand home path", "source_file", sourceFile, "err", err)
 			os.Exit(1)
@@ -39,7 +40,12 @@ var sopsCmd = &cobra.Command{
 		}
 
 		template.WriteFile(".sops.yaml", contentBytes, 0664)
-		template.ExecCommand("git", "add", ".sops.yaml")
+		stdout, err := cli_base.ExecCommand("git", "add", ".sops.yaml")
+		if err != nil {
+			slog.Error("failed to add .sops.yaml to git", "stdout", stdout, "err", err)
+			os.Exit(1)
+		}
+		fmt.Println(stdout)
 	},
 }
 

@@ -1,9 +1,12 @@
 package cmd
 
 import (
+	"fmt"
+	"log/slog"
+	"os"
 	"path/filepath"
 
-	"github.com/kahnwong/config-init/template"
+	"github.com/kahnwong/cli-base"
 	"github.com/spf13/cobra"
 )
 
@@ -11,7 +14,13 @@ var dvcCmd = &cobra.Command{
 	Use:   "dvc",
 	Short: "Init dvc",
 	Run: func(cmd *cobra.Command, args []string) {
-		template.ExecCommand("dvc", "init")
+		stdout, err := cli_base.ExecCommand("dvc", "init")
+		if err != nil {
+			slog.Error("failed to init dvc", "err", err)
+			os.Exit(1)
+		}
+		fmt.Println(stdout)
+
 		writeConfigAndGitAdd("dvc", "config", filepath.Join(".dvc", "config"))
 	},
 }

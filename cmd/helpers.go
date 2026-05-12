@@ -5,8 +5,10 @@ package cmd
 
 import (
 	"fmt"
+	"log/slog"
 	"os"
 
+	"github.com/kahnwong/cli-base"
 	"github.com/kahnwong/config-init/template"
 	"github.com/spf13/cobra"
 )
@@ -59,5 +61,10 @@ func createSimpleConfigCommand(use, short, templateDir, filename, destFile strin
 // writeConfigAndGitAdd writes a config file and adds it to git
 func writeConfigAndGitAdd(templateDir, filename, destFile string) {
 	template.WriteConfig(templateDir, filename, destFile)
-	template.ExecCommand("git", "add", destFile)
+	stdout, err := cli_base.ExecCommand("git", "add", destFile)
+	if err != nil {
+		slog.Error("failed to add file to git", "file", destFile, "err", err)
+		os.Exit(1)
+	}
+	fmt.Println(stdout)
 }

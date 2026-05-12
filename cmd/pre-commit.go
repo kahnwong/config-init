@@ -5,7 +5,10 @@ package cmd
 
 import (
 	"fmt"
+	"log/slog"
+	"os"
 
+	"github.com/kahnwong/cli-base"
 	"github.com/kahnwong/config-init/template"
 	"github.com/spf13/cobra"
 )
@@ -48,9 +51,12 @@ var preCommitCmd = &cobra.Command{
 			template.WriteConfig("pre-commit", "pre-commit-config.yaml", ".pre-commit-config.yaml")
 
 			// init pre-commit
-			template.ExecCommand("git", "init")
-			template.ExecCommand("git", "add", ".pre-commit-config.yaml")
-			template.ExecCommand("pre-commit", "install")
+			stdout, err := cli_base.ExecCommand("bash", "-c", "git init && git add .pre-commit-config.yaml && pre-commit install")
+			if err != nil {
+				slog.Error("failed to init pre-commit", "err", err)
+				os.Exit(1)
+			}
+			fmt.Println(stdout)
 
 			// hooks configurations
 			if len(args) > 0 {
@@ -60,7 +66,12 @@ var preCommitCmd = &cobra.Command{
 				writeConfigAndGitAdd("pre-commit", filename, destFile)
 			}
 		case "bump":
-			template.ExecCommand("bash", "-c", fmt.Sprintf("yq e -i '.repos[1].rev = \"%s\"' .pre-commit-config.yaml", preCommitLatestRevision))
+			stdout, err := cli_base.ExecCommand("bash", "-c", fmt.Sprintf("yq e -i '.repos[1].rev = \"%s\"' .pre-commit-config.yaml", preCommitLatestRevision))
+			if err != nil {
+				slog.Error("failed to bump pre-commit", "err", err)
+				os.Exit(1)
+			}
+			fmt.Println(stdout)
 		}
 	},
 }

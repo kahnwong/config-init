@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"log/slog"
 	"os"
-	"os/exec"
 	"path/filepath"
 )
 
@@ -58,16 +57,4 @@ func WriteConfig(template string, filename string, destFile string) {
 	}
 	WriteFile(destPath, content, 0664)
 	fmt.Printf("Written to %s\n", destFile)
-}
-
-func ExecCommand(name string, args ...string) {
-	cmd := exec.Command(name, args...)
-	stdout, err := cmd.Output()
-
-	if err != nil {
-		slog.Error("failed to execute command", "command", name, "args", args, "err", err)
-		os.Exit(1)
-	}
-
-	fmt.Print(string(stdout))
 }
