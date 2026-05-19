@@ -4,6 +4,26 @@
     "config:recommended",
     "group:allNonMajor"
   ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/(^|/)rust-toolchain\\.toml$/", "/(^|/)rust-toolchain$/"],
+      "matchStrings": ["channel\\s*=\\s*\"(?<currentValue>.*)\""],
+      "depNameTemplate": "rust",
+      "datasourceTemplate": "docker",
+      "packageNameTemplate": "docker.io/library/rust",
+      "versioningTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/(^|/)\\.python-version$/"],
+      "matchStrings": ["^(?<currentValue>.+)$"],
+      "depNameTemplate": "python",
+      "datasourceTemplate": "docker",
+      "packageNameTemplate": "docker.io/library/python",
+      "versioningTemplate": "docker"
+    }
+  ],
   "packageRules": [
     {
       "matchManagers": [
@@ -17,7 +37,42 @@
       ],
       "groupName": "go version",
       "separateMinorPatch": true,
-      "rangeStrategy": "bump"
+      "rangeStrategy": "bump",
+      "commitMessageTopic": "go",
+      "commitMessageExtra": "to {{{newVersion}}}"
+    },
+    {
+      "matchPackageNames": [
+        "rust",
+        "docker.io/library/rust"
+      ],
+      "groupName": "rust version",
+      "separateMinorPatch": true,
+      "rangeStrategy": "bump",
+      "commitMessageTopic": "rust",
+      "commitMessageExtra": "to {{{newVersion}}}"
+    },
+    {
+      "matchPackageNames": [
+        "python",
+        "docker.io/library/python"
+      ],
+      "groupName": "python version",
+      "separateMinorPatch": true,
+      "rangeStrategy": "bump",
+      "commitMessageTopic": "python",
+      "commitMessageExtra": "to {{{newVersion}}}"
+    },
+    {
+      "description": "Force Python minor versioning for pyproject.toml",
+      "matchPackageNames": [
+        "python",
+        "docker.io/library/python"
+      ],
+      "matchFileNames": [
+        "pyproject.toml"
+      ],
+      "extractVersion": "^(?<version>\\d+\\.\\d+)"
     }
   ]
 }
