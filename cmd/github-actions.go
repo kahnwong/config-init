@@ -37,9 +37,10 @@ var githubActionsMapping = map[string][][2]string{
 		{"osv-scanner-pr.yaml", "osv-scanner-pr.yaml"},
 		{"osv-scanner-scheduled.yaml", "osv-scanner-scheduled.yaml"},
 	},
-	"pre-commit":  {{"pre-commit.yaml", "pre-commit.yaml"}},
-	"python-test": {{"python-test.yaml", "python-test.yaml"}},
-	"rust-test":   {{"rust-test.yaml", "rust-test.yaml"}},
+	"pre-commit":     {{"pre-commit.yaml", "pre-commit.yaml"}},
+	"python-test":    {{"python-test.yaml", "python-test.yaml"}},
+	"tangled-mirror": {{"tangled-mirror.yaml", "tangled-mirror.yaml"}},
+	"rust-test":      {{"rust-test.yaml", "rust-test.yaml"}},
 }
 
 var githubActionsCmd = &cobra.Command{
