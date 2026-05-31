@@ -42,7 +42,6 @@ repos:
       - id: tofu-fmt
       - id: tofu-validate
       - id: terraform-docs
-      - id: terraform-trivy
       - id: checkov
       # -- ops -- #
       - id: yamlfmt
@@ -57,15 +56,17 @@ repos:
           - DL3018
           - --ignore
           - DL3027
-      # -- misc -- #
+      # -- nix -- #
       - id: nix-fmt
       - id: statix
       - id: deadnix
-      - id: graphql
-      - id: yarn-prettier
-      # - id: markdownlint-cli2
+      # -- markdown -- #
+      - id: markdownlint-cli2
       - id: mdsf
       - id: rumdl
-      - id: typos
+      # -- sql -- #
       - id: sqruff-lint
       - id: sqruff-fix
+      # -- misc -- #
+      - id: typos
+      - id: oxfmt
