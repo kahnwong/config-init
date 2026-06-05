@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/kahnwong/cli-base"
+	cli_base "github.com/kahnwong/cli-base"
 	"github.com/spf13/cobra"
 )
 

@@ -2,7 +2,7 @@ name: Go Test
 on:
   pull_request:
     paths-ignore:
-      - '.github/**'
+      - ".github/**"
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true

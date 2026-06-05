@@ -1,9 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended",
-    "group:allNonMajor"
-  ],
+  "extends": ["config:recommended", "group:allNonMajor"],
   "customManagers": [
     {
       "customType": "regex",
@@ -26,15 +23,8 @@
   ],
   "packageRules": [
     {
-      "matchManagers": [
-        "gomod",
-        "dockerfile"
-      ],
-      "matchPackageNames": [
-        "go",
-        "golang",
-        "docker.io/library/golang"
-      ],
+      "matchManagers": ["gomod", "dockerfile"],
+      "matchPackageNames": ["go", "golang", "docker.io/library/golang"],
       "groupName": "go version",
       "separateMinorPatch": true,
       "rangeStrategy": "bump",
@@ -42,10 +32,7 @@
       "commitMessageExtra": "to {{{newVersion}}}"
     },
     {
-      "matchPackageNames": [
-        "rust",
-        "docker.io/library/rust"
-      ],
+      "matchPackageNames": ["rust", "docker.io/library/rust"],
       "groupName": "rust version",
       "separateMinorPatch": true,
       "rangeStrategy": "bump",
@@ -53,10 +40,7 @@
       "commitMessageExtra": "to {{{newVersion}}}"
     },
     {
-      "matchPackageNames": [
-        "python",
-        "docker.io/library/python"
-      ],
+      "matchPackageNames": ["python", "docker.io/library/python"],
       "groupName": "python version",
       "separateMinorPatch": true,
       "rangeStrategy": "bump",
@@ -65,13 +49,8 @@
     },
     {
       "description": "Force Python minor versioning for pyproject.toml",
-      "matchPackageNames": [
-        "python",
-        "docker.io/library/python"
-      ],
-      "matchFileNames": [
-        "pyproject.toml"
-      ],
+      "matchPackageNames": ["python", "docker.io/library/python"],
+      "matchFileNames": ["pyproject.toml"],
       "extractVersion": "^(?<version>\\d+\\.\\d+)"
     }
   ]

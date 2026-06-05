@@ -8,7 +8,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/kahnwong/cli-base"
+	cli_base "github.com/kahnwong/cli-base"
 	"github.com/kahnwong/config-init/template"
 	"github.com/spf13/cobra"
 )
