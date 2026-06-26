@@ -10,7 +10,6 @@ import (
 
 	cli_base "github.com/kahnwong/cli-base"
 	"github.com/kahnwong/config-init/template"
-	"github.com/spf13/cobra"
 )
 
 const (
@@ -31,31 +30,12 @@ func requireTemplateOption(args []string) {
 	requireArgs(args, errMsgTemplateOption)
 }
 
-// mapOption returns the mapped value for a given option from a map
-func mapOption(option string, mapping map[string]string) (filename string, destFile string) {
-	if val, ok := mapping[option]; ok {
-		return val, val
-	}
-	return option, option
-}
-
 // mapOptionSeparate returns separate filename and destFile from a map
 func mapOptionSeparate(option string, mapping map[string][2]string) (filename string, destFile string) {
 	if val, ok := mapping[option]; ok {
 		return val[0], val[1]
 	}
 	return option, option
-}
-
-// createSimpleConfigCommand creates a cobra command that writes a single config file
-func createSimpleConfigCommand(use, short, templateDir, filename, destFile string) *cobra.Command {
-	return &cobra.Command{
-		Use:   use,
-		Short: short,
-		Run: func(cmd *cobra.Command, args []string) {
-			template.WriteConfig(templateDir, filename, destFile)
-		},
-	}
 }
 
 // writeConfigAndGitAdd writes a config file and adds it to git
