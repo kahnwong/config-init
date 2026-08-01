@@ -22,6 +22,7 @@ var githubActionsOptions = []string{
 	"osv-scanner",
 	"pre-commit",
 	"rust-test",
+	"tangled-mirror",
 }
 
 var githubActionsMapping = map[string][][2]string{
