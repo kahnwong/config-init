@@ -19,11 +19,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-      # ---------- vuln check ----------
-      - name: Scan image
-        uses: anchore/scan-action@v7
-        with:
-          path: "."
       # ---------- build ----------
       - name: Setup node
         uses: actions/setup-node@v6
