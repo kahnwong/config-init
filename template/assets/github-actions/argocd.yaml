@@ -80,7 +80,7 @@ jobs:
             keep-env-derivations = true
             keep-outputs = true
       - name: Restore and save Nix store
-        uses: nix-community/cache-nix-action@v6
+        uses: nix-community/cache-nix-action@v7
         id: nix-cache
         with:
           primary-key: nix-${{ runner.os }}-nixos-25.11
