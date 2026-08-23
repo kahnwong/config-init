@@ -1,6 +1,13 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended", "group:allNonMajor"],
+  "github-actions": {
+    "managerFilePatterns": [
+      "/(^|/)\\.github/workflows/[^/]+\\.ya?ml$/",
+      "/(^|/)action\\.ya?ml$/",
+      "/(^|/)template/assets/github-actions/[^/]+\\.ya?ml$/"
+    ]
+  },
   "customManagers": [
     {
       "customType": "regex",
