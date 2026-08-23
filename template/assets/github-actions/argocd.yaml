@@ -74,7 +74,7 @@ jobs:
         run: |
           echo "github_sha_short=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
       # ---------- install yq ----------
-      - uses: nixbuild/nix-quick-install-action@v30
+      - uses: nixbuild/nix-quick-install-action@v35
         with:
           nix_conf: |
             keep-env-derivations = true
