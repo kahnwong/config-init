@@ -28,7 +28,7 @@ jobs:
       - name: Install pre-commit
         run: pipx install pre-commit
       - name: Cache pre-commit modules
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           key: ${{ runner.OS }}-pre-commit-cache-${{ hashFiles('.pre-commit-config.yaml') }}
           path: ~/.cache/pre-commit
