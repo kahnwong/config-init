@@ -34,11 +34,12 @@ jobs:
       - name: Build and push images with bake
         uses: docker/bake-action@v7
         with:
+          # source: ${{ github.workspace }} # if run build command prior to running bake, otherwise docker build context couldn't find artifacts
           files: docker-bake.hcl
           targets: default
           push: true
           set: |
             *.cache-from=type=gha,scope=buildx-${{ github.ref_name }}
             *.cache-to=type=gha,mode=max,scope=buildx-${{ github.ref_name }}
-            backend.tags=${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/backend:${{ env.GIT_SHORT_SHA }}
-            frontend.tags=${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/frontend:${{ env.GIT_SHORT_SHA }}
+            backend.tags=${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/backend:${{ env.GIT_SHORT_SHA }} # [TODO] rename image
+            frontend.tags=${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/frontend:${{ env.GIT_SHORT_SHA }} # [TODO] rename image
