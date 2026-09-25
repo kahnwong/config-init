@@ -1,6 +1,6 @@
 services:
   clickhouse:
-    image: clickhouse/clickhouse-server:26.8.2.7-alpine
+    image: clickhouse/clickhouse-server:26.9.2.8-alpine
     ports:
       - ${CLICKHOUSE_HTTP_PORT}:${CLICKHOUSE_HTTP_PORT}
       - ${CLICKHOUSE_TCP_PORT}:${CLICKHOUSE_TCP_PORT}
