@@ -13,12 +13,11 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v7
-      - name: Install uv
       - name: Setup uv
         uses: astral-sh/setup-uv@v10.3.0
         with:
           enable-cache: true
           cache-python: true
-      - name: Run mlflow pipeline
+      - name: Run tests
         run: |
-          python3 docker_mlflow/experiment_tracking.py
+          uv run docker_mlflow/experiment_tracking.py

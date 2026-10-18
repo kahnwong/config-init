@@ -21,6 +21,7 @@ var githubActionsOptions = []string{
 	"node-test",
 	"osv-scanner",
 	"pre-commit",
+	"python-test",
 	"rust-test",
 	"tangled-mirror",
 }
