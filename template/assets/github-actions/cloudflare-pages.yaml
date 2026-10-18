@@ -36,3 +36,13 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy ${{ env.BUILD_DIR }} --project-name=${{ env.PROJECT_NAME }}
+      # ---------- healthcheck ----------
+      - name: Install ci-cd-utils
+        uses: supplypike/setup-bin@v5
+        with:
+          uri: https://github.com/kahnwong/ci-cd-utils/releases/download/v0.1.0/ci-cd-utils_0.1.0_linux_amd64.tar.gz
+          name: ci-cd-utils
+          version: 0.1.0
+      - name: Healthcheck
+        run: |
+          ci-cd-utils healthcheck https://example.com # CHANGE ME
