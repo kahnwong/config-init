@@ -3,7 +3,7 @@ module github.com/kahnwong/config-init
 go 1.27.2
 
 require (
-	github.com/kahnwong/cli-base v0.0.0-20260630163537-c7bc0284984a
+	github.com/kahnwong/cli-base v0.0.0-20261021022842-5a965ea5d6aa
 	github.com/rs/zerolog v1.35.1
 	github.com/samber/slog-zerolog/v2 v2.9.2
 	github.com/spf13/cobra v1.10.2
