@@ -13,7 +13,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var preCommitLatestRevision = "b0accfb"
+var preCommitLatestRevision = "42b2138"
 
 var preCommitOptions = []string{
 	"markdownlint",
