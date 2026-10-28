@@ -1,4 +1,4 @@
-FROM node:24 AS build
+FROM node:26 AS build
 
 WORKDIR /opt/build
 
@@ -9,7 +9,7 @@ RUN yarn install --ignore-scripts
 COPY . .
 RUN yarn build
 
-FROM node:24-alpine AS deploy
+FROM node:26-alpine AS deploy
 
 WORKDIR /opt/app
 
