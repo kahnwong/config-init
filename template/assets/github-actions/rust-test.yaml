@@ -15,5 +15,7 @@ jobs:
       - uses: actions/checkout@v7
       - name: Setup Rust
         uses: actions-rust-lang/setup-rust-toolchain@v2
+      - name: Setup Mold
+        uses: rui314/setup-mold@v1
       - name: Run Cargo Test
         run: cargo test --all-features
