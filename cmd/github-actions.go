@@ -18,7 +18,6 @@ var githubActionsOptions = []string{
 	"github-pages",
 	"go-test",
 	"goreleaser",
-	"nix",
 	"node-test",
 	"osv-scanner",
 	"pre-commit",
@@ -35,7 +34,6 @@ var githubActionsMapping = map[string][][2]string{
 	"github-pages":     {{"github-pages.yaml", "deploy.yaml"}},
 	"go-test":          {{"go-test.yaml", "go-test.yaml"}},
 	"goreleaser":       {{"goreleaser.yaml", "release.yaml"}},
-	"nix":              {{"nix.yaml", "deploy.yaml"}},
 	"node-test":        {{"node-test.yaml", "node-test.yaml"}},
 	"osv-scanner": {
 		{"osv-scanner-pr.yaml", "osv-scanner-pr.yaml"},
