@@ -10,13 +10,13 @@ import (
 )
 
 var goreleaserOptions = []string{
-	"linux",
-	"darwin",
+	"go",
+	"rust",
 }
 
 var goreleaserMapping = map[string][2]string{
-	"linux":  {"goreleaser-linux.yaml", ".goreleaser-linux.yaml"},
-	"darwin": {"goreleaser-darwin.yaml", ".goreleaser-darwin.yaml"},
+	"go":   {"goreleaser.yaml", ".goreleaser.yaml"},
+	"rust": {"goreleaser-rust.yaml", ".goreleaser.yaml"},
 }
 
 var goreleaserCmd = &cobra.Command{

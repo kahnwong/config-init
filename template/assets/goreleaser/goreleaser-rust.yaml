@@ -1,0 +1,12 @@
+version: 2
+before:
+  hooks:
+    - rustup default stable
+    - cargo install --locked cargo-zigbuild
+builds:
+  - builder: rust
+    targets:
+      - x86_64-unknown-linux-gnu
+      - aarch64-unknown-linux-gnu
+    flags:
+      - --release
