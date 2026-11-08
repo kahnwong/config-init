@@ -47,7 +47,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          provenance: false
+          provenance: true
       - name: Attest
         uses: actions/attest-build-provenance@v4
         id: attest

@@ -38,6 +38,7 @@ jobs:
           files: docker-bake.hcl
           targets: default
           push: true
+          provenance: true
           set: |
             *.cache-from=type=gha,scope=buildx-${{ github.ref_name }}
             *.cache-to=type=gha,mode=max,scope=buildx-${{ github.ref_name }}
