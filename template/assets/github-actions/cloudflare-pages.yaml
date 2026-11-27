@@ -20,7 +20,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
       # ---------- install binary via nix ----------
-      - uses: nixbuild/nix-quick-install-action@v35
+      - uses: nixbuild/nix-quick-install-action@v36
         with:
           nix_conf: |
             keep-env-derivations = true
